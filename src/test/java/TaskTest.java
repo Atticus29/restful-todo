@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.time.LocalDateTime;
 
 public class TaskTest {
   @Test
@@ -12,5 +13,26 @@ public class TaskTest {
   public void getDescription_returnsDescription_true(){
     Task testTask = new Task("Use to-do list");
     assertEquals("Use to-do list", testTask.getDescription());
+  }
+
+  @Test
+  public void getCreatedAt_instantiatesWithCurrentTime_today(){
+    Task myTask = new Task("Mow the lawn");
+    assertEquals(LocalDateTime.now().getDayOfWeek(), myTask.getCreatedAt().getDayOfWeek());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfTask_true(){
+    Task firstTask = new Task("Mow the lawn");
+    Task secondTask = new Task("Buy groceries");
+    assertEquals(true, Task.all().contains(firstTask));
+    assertEquals(true, Task.all().contains(secondTask));
+  }
+
+  @Test
+  public void clear_emptiesAllTasksFromArrayList_0(){
+    Task myTask = new Task("Mow the lawn");
+    Task.clear();
+    assertEquals(0,Task.all().size());
   }
 }
