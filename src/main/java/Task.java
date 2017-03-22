@@ -7,12 +7,14 @@ public class Task {
   private boolean mCompleted;
   private LocalDateTime mCreatedAt;
   private static List<Task> instances = new ArrayList<Task>();
+  private int mId;
 
   public Task(String description){
     mDescription = description;
     mCompleted = false;
     mCreatedAt = LocalDateTime.now();
     instances.add(this);
+    mId = instances.size();
   }
 
   public boolean isCompleted(){
@@ -33,5 +35,13 @@ public class Task {
 
   public static void clear(){
     instances.clear();
+  }
+
+  public int getId(){
+    return mId;
+  }
+
+  public static Task find(int id){
+    return instances.get(id-1);
   }
 }
