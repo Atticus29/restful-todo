@@ -1,6 +1,7 @@
 <p>Add a new task:</p>
 
 <form action="/tasks" method="post">
+  <input type="hidden" name="category" value="$category">
   <label for="description">Task Description:</label>
   <input id="description" type="text" name="description">
 
